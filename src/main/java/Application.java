@@ -1,20 +1,23 @@
+import bot.MyBot;
 import entities.User;
-import services.MessageService;
-import services.UserService;
+import services.MessageServiceImpl;
+import services.UserServiceImpl;
 
 import java.util.Scanner;
 
 public class Application {
-    private MessageService ms;
-    private UserService us;
+    private MessageServiceImpl ms;
+    private UserServiceImpl us;
     private Scanner sc;
     private User user;
+    private MyBot bot;
 
     public Application() {
         this.sc = new Scanner(System.in);
-        this.ms = new MessageService(sc);
-        this.us = new UserService(sc);
+        this.ms = new MessageServiceImpl(sc);
+        this.us = new UserServiceImpl(sc);
         this.user = new User("user", "");
+        this.bot = new MyBot("alex", sc);
     }
 
     private void sighIn() {
@@ -22,6 +25,7 @@ public class Application {
         String login = sc.next();
         System.out.println("Enter you password");
         String password = sc.next();
+        us.
         this.user = new User(login, password);
     }
 
@@ -30,7 +34,10 @@ public class Application {
             System.out.println("Hello," + user.getLogin() + ". What would you like to do?");
             System.out.println("Press 1 to log in.");
             System.out.println("Press 2 wright new message to the forum.");
+            System.out.println("Press 6 to have a conversation with our bot");
             System.out.println("Press 9 to exit");
+
+
             int input = sc.nextInt();
             switch (input) {
                 case 1:
@@ -39,8 +46,13 @@ public class Application {
                 case 2:
                     ms.writeNewMessage(user);
                     break;
+                case 6:
+                    bot.startSpeaking(user.getLogin());
+                    break;
                 case 9:
                     return true;
+                default:
+                    System.out.println("you have pressed wrong number -" + input);
             }
         } while (true);
     }

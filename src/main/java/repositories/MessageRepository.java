@@ -25,11 +25,25 @@ public class MessageRepository {
     public void deleteMessage(Message mg) {
         messages.remove(mg);
     }
+    public void deleteMessageById (long id) {
+        messages.removeIf( message->message.getId() == id);
+    }
 
-    public Message getMessageById(long idInp){
+    public Message getMessageById(long idInp) {
         return messages.stream()
-                .filter(message -> message.getId()==idInp)//вместо == .equals(то с чем сравниваем)
+                .filter(message -> message.getId() == idInp)//вместо == .equals(то с чем сравниваем)
                 .findFirst()
                 .get();
+    }
+
+    public void editMessageById(long id, String newTextOfMessage) {
+//        for (int i = 0;i<messages.size();i++) {
+//                if(messages.get(i).getId()== id) {
+//                    messages.get(i).setText(newTextOfMessage);
+//                }
+//        }
+        messages.stream()
+                .filter(message -> message.getId() == id)
+                .forEach(message -> message.setText(newTextOfMessage));
     }
 }

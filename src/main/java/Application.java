@@ -25,8 +25,11 @@ public class Application {
         String login = sc.next();
         System.out.println("Enter you password");
         String password = sc.next();
-        us.
-        this.user = new User(login, password);
+        if(us.isRegister(login,password)){
+            this.user = new User(login, password);
+        }else {
+            System.out.println("Wrong login or password");
+        }
     }
 
     public boolean start() {
@@ -35,6 +38,7 @@ public class Application {
             System.out.println("Press 1 to log in.");
             System.out.println("Press 2 wright new message to the forum.");
             System.out.println("Press 6 to have a conversation with our bot");
+            System.out.println("Press 8 to see all the users");
             System.out.println("Press 9 to exit");
 
 
@@ -48,6 +52,9 @@ public class Application {
                     break;
                 case 6:
                     bot.startSpeaking(user.getLogin());
+                    break;
+                case 8:
+                    us.showAllUsers();
                     break;
                 case 9:
                     return true;

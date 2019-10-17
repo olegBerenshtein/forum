@@ -19,7 +19,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void writeNewMessage(User authorOfMessage) {
         System.out.println("Write new message");
-        String newMessage = sc.nextLine();
+        String newMessage = sc.next();
         Message message = new Message(authorOfMessage, newMessage);
         mr.addMessage(message);
 

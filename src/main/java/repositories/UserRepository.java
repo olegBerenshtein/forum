@@ -8,9 +8,10 @@ import java.util.List;
 public class UserRepository {
     private List<User> users;
 
-
     public UserRepository() {
         this.users = new ArrayList<User>();
+        users.add(new User("mike","1234"));
+        users.add(new User("oleg","1234"));
     }
 
     public void addUser(User user) {

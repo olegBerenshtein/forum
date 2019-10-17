@@ -25,6 +25,9 @@ public class UserServiceImpl implements UserService{
         userForNewPassword.setPassword(newPassword);
     }
 
+    public void showAllUsers(){
+        ur.showUser();
+    }
 
     @Override
     public User saveUser(User user) {
